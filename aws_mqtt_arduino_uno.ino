@@ -44,7 +44,7 @@ char myIPAddress[20];
 
 /************************* MQTT Client Config ********************************/
 
-const char* mqttserver = "192.168.0.14";               // Local Broker
+const char* mqttserver = "192.168.1.50";               // Local Broker
 const int mqttport = 1883;                             // MQTT port
 String subscriptionTopic = "awsiot_to_localgateway";   // Get messages from AWS
 String publishTopic = "localgateway_to_awsiot";        // Send messages to AWS 
@@ -116,6 +116,8 @@ void setup() {
   
   // start the Ethernet connection:
   Ethernet.begin(mac);
+  
+  DEBUG_PRINT("<SETUP> : Board IP = " + (String)getIpReadable(Ethernet.localIP()));
 
   // Connect to Broker
   if (reconnect()) {
